@@ -3,13 +3,72 @@
 {% load static %}
 
 {% block title %}
-<title>Home page</title>
+<title>My workspace</title>
 {% endblock %}
 
 {% block content %}
-<h1 class="mt-4">Home</h1>
-<p class="lead">
+<h1 class="mt-4">My workspace</h1>
+
+<div class="alert alert-info" role="alert">
     In development.
-</p>
+</div>
+
+<div class="card bg-info">
+    <div class="card-body">
+        <h3>Teams</h3>
+        <div class="card bg-dark text-light">
+            <div class="card-body text-white-70">
+                In development.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-info mt-4">
+    <div class="card-body">
+        <h3>My folders</h3>
+        
+        <a class="btn btn-success mb-1" href="{% url 'create-folder' %}">
+            <i class="fas fa-plus"></i> New folder
+        </a>
+        
+        <div class="card bg-dark text-light">
+            <div class="card-body text-white-70">
+                <table class="table table-striped">
+                
+                    <thead>
+                        <tr class="text-light">
+                            <th></th>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        {% for obj in object_list %}
+                        <tr>
+                            <td class="text-light">--</td>
+                            <td class="text-light">{{ obj.name }}</td>
+                            <td class="text-light">{{ obj.description }}</td>
+                            <td class="text-light">
+                                <a href="{% url 'edit-folder' obj.pk %}" class="btn btn-warning">
+                                    Edit</a>
+                                <a href="{% url 'delete-folder' obj.pk %}" class="btn btn-danger">
+                                    Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="100%" class="text-light">No folders.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock %}
