@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
+    'secret.apps.SecretConfig',
 
     'crispy_forms',
     'crispy_bootstrap5',
