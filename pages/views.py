@@ -1,11 +1,13 @@
 from django.views.generic import TemplateView
 
-from secret.models import Folder
+from secret.models import Folder, Team
 
 class IndexView(TemplateView):
-    model = Folder
     template_name = 'pages/index.html'
 
-    def get_queryset(self):
-        self.object_list = Folder.objects.filter(owner=self.request.user)
-        return self.object_list
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['teams'] = Team.objects.filter(manager=self.request.user)
+        data['folders'] = Folder.objects.filter(owner=self.request.user)
+        return data
+

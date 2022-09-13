@@ -18,7 +18,33 @@
         <h3>Teams</h3>
         <div class="card bg-dark text-light">
             <div class="card-body text-white-70">
-                In development.
+                <table class="table table-striped">
+                
+                    <thead>
+                        <tr class="text-light">
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        {% for obj in teams %}
+                        <tr>
+                            <td class="text-light">{{ obj.name }}</td>
+                            <td class="text-light">
+                                <a href="{% url 'edit-team' obj.pk %}" class="btn btn-warning">
+                                    Edit</a>
+                                <a href="{% url 'delete-team' obj.pk %}" class="btn btn-danger">
+                                    Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="100%" class="text-light">No folders.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -38,18 +64,23 @@
                 
                     <thead>
                         <tr class="text-light">
-                            <th></th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                 
                     <tbody>
-                        {% for obj in object_list %}
+                        {% for obj in folders %}
                         <tr>
-                            <td class="text-light">--</td>
                             <td class="text-light">{{ obj.name }}</td>
-                            <td class="text-light">{{ obj.description }}</td>
+                            <td class="text-light">
+                                {% if obj.description != None %}
+                                    {{ obj.description }}
+                                {% else %}
+                                    
+                                {% endif %}
+                            </td>
                             <td class="text-light">
                                 <a href="{% url 'edit-folder' obj.pk %}" class="btn btn-warning">
                                     Edit</a>
