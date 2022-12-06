@@ -7,7 +7,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        data['teams'] = Team.objects.filter(manager=self.request.user)
-        data['folders'] = Folder.objects.filter(owner=self.request.user)
+        data['teams'] = Team.objects.filter(manager=self.request.user.id)
+        data['folders'] = Folder.objects.filter(owner=self.request.user.id)
         return data
 
