@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('', include('users.urls')),
     path('', include('secret.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
